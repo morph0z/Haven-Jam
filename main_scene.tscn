@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://bule4khbiew2b"]
+
+[ext_resource type="PackedScene" uid="uid://ce2d1oqjccrh0" path="res://scenes/player_boxer.tscn" id="1_0f027"]
+[ext_resource type="PackedScene" uid="uid://cgj481kvlc4dy" path="res://scenes/dummy_enemy.tscn" id="1_2c62f"]
+[ext_resource type="Texture2D" uid="uid://bfrxo1ykygq62" path="res://assets/sprites/Sprite-0002.png" id="1_gyfs4"]
+[ext_resource type="PackedScene" uid="uid://bwruo6t3x42jn" path="res://scenes/Player_Ui.tscn" id="4_d5x1h"]
+[ext_resource type="Script" uid="uid://dovb6gswgfn30" path="res://scripts/bpm_handler.gd" id="5_8mm7a"]
+[ext_resource type="Script" uid="uid://vrqwe2n0erlu" path="res://scripts/enemy_handler.gd" id="6_66tet"]
+[ext_resource type="AudioStream" uid="uid://cjd1d7hch8mhe" path="res://assets/music/practice409.mp3" id="6_hq1ik"]
+[ext_resource type="PackedScene" uid="uid://dx04711ruabq5" path="res://scenes/spinner_enemy.tscn" id="8_7ycvg"]
+[ext_resource type="PackedScene" uid="uid://cusrgowdp1040" path="res://scenes/dummy_enemy2.tscn" id="9_7ycvg"]
+
+[node name="Main Scene" type="Node2D" unique_id=1638206065]
+
+[node name="enemy spawnpoint" type="Marker2D" parent="." unique_id=1680540895]
+position = Vector2(-1, -7)
+
+[node name="Sprite0002" type="Sprite2D" parent="." unique_id=1307079297]
+z_index = -5
+texture_filter = 1
+position = Vector2(0, 11)
+texture = ExtResource("1_gyfs4")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1017467143]
+offset_left = -58.0
+offset_top = -46.0
+offset_right = -18.0
+offset_bottom = -6.0
+scale = Vector2(2.9118035, 1.6499188)
+color = Color(1, 1, 1, 0)
+
+[node name="PlayerBoxer" parent="." unique_id=1958679507 node_paths=PackedStringArray("Ui") instance=ExtResource("1_0f027")]
+Ui = NodePath("../CanvasLayer/PlayerUi")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1302953640]
+
+[node name="PlayerUi" parent="CanvasLayer" unique_id=793220772 node_paths=PackedStringArray("beats") instance=ExtResource("4_d5x1h")]
+beats = NodePath("../../MusicHandler")
+
+[node name="MusicHandler" type="Node" parent="." unique_id=266360400]
+unique_name_in_owner = true
+script = ExtResource("5_8mm7a")
+music = Array[AudioStreamMP3]([ExtResource("6_hq1ik")])
+metadata/_custom_type_script = "uid://dovb6gswgfn30"
+
+[node name="EnemyHandler" type="Node" parent="." unique_id=1996925924 node_paths=PackedStringArray("spawn_point", "player_ref", "bg_finish")]
+script = ExtResource("6_66tet")
+enemyList = Array[PackedScene]([ExtResource("1_2c62f"), ExtResource("8_7ycvg"), ExtResource("9_7ycvg")])
+spawn_point = NodePath("../enemy spawnpoint")
+player_ref = NodePath("../PlayerBoxer")
+bg_finish = NodePath("../ColorRect")
+metadata/_custom_type_script = "uid://vrqwe2n0erlu"

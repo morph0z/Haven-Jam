@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bwruo6t3x42jn"]
+
+[ext_resource type="Script" uid="uid://yxcacvslgia2" path="res://scripts/player_ui.gd" id="1_bie7v"]
+
+[node name="PlayerUi" type="Control" unique_id=793220772]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bie7v")
+
+[node name="Label" type="Label" parent="." unique_id=15233332]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 76.0
+offset_bottom = 33.0
+text = "COMBO:"

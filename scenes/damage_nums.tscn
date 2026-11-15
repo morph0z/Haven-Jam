@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cumkmr5iuqmm7"]
+
+[ext_resource type="FontFile" uid="uid://px6mw6nvasd4" path="res://Next Bravo.otf" id="1_byp8h"]
+[ext_resource type="Script" uid="uid://jalsqmitu5rh" path="res://scripts/damage_nums.gd" id="1_dipu0"]
+
+[sub_resource type="Theme" id="Theme_gr7tl"]
+Label/fonts/font = ExtResource("1_byp8h")
+
+[node name="DamageNums" type="Label" unique_id=1581761667]
+z_index = 5
+texture_filter = 1
+theme = SubResource("Theme_gr7tl")
+theme_override_fonts/font = ExtResource("1_byp8h")
+text = "PLACEHOLDER"
+script = ExtResource("1_dipu0")

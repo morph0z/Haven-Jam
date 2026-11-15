@@ -1,0 +1,200 @@
+[gd_scene format=3 uid="uid://cgj481kvlc4dy"]
+
+[ext_resource type="Script" uid="uid://cipttw1dh0ufs" path="res://scripts/dummy_enemy.gd" id="1_ss26w"]
+[ext_resource type="Script" uid="uid://dtgnvolxh2wqi" path="res://scripts/hurtbox.gd" id="1_thcns"]
+[ext_resource type="Script" uid="uid://otux3dmk7114" path="res://scripts/health_component.gd" id="2_fah2s"]
+[ext_resource type="Texture2D" uid="uid://sogbt2i708xw" path="res://assets/sprites/dummy.png" id="3_fah2s"]
+[ext_resource type="Script" uid="uid://bgllng8rb8y36" path="res://scripts/hitbox.gd" id="4_fx3pk"]
+[ext_resource type="Texture2D" uid="uid://cwk7as588o85v" path="res://assets/sprites/dummyflash1.png" id="4_gwq7n"]
+[ext_resource type="Script" uid="uid://cukibpdmyk57y" path="res://scripts/damage_values.gd" id="5_kos4r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fx3pk"]
+atlas = ExtResource("3_fah2s")
+region = Rect2(720, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kos4r"]
+atlas = ExtResource("3_fah2s")
+region = Rect2(480, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ss26w"]
+atlas = ExtResource("3_fah2s")
+region = Rect2(560, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwq7n"]
+atlas = ExtResource("3_fah2s")
+region = Rect2(640, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40kdg"]
+atlas = ExtResource("3_fah2s")
+region = Rect2(160, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7u65s"]
+atlas = ExtResource("3_fah2s")
+region = Rect2(240, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mch3n"]
+atlas = ExtResource("3_fah2s")
+region = Rect2(320, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwh7i"]
+atlas = ExtResource("3_fah2s")
+region = Rect2(400, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hog1"]
+atlas = ExtResource("3_fah2s")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ndxo"]
+atlas = ExtResource("3_fah2s")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkmfn"]
+atlas = ExtResource("4_gwq7n")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gplcb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fx3pk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kos4r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ss26w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwq7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fx3pk")
+}],
+"loop": 0,
+"name": &"Hit left",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40kdg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7u65s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mch3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwh7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hog1")
+}],
+"loop": 0,
+"name": &"Hit right",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ndxo")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkmfn")
+}],
+"loop": 1,
+"name": &"flash",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gplcb"]
+size = Vector2(40, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kos4r"]
+size = Vector2(40, 80)
+
+[sub_resource type="Resource" id="Resource_ss26w"]
+script = ExtResource("5_kos4r")
+attack_damage = 1
+metadata/_custom_type_script = "uid://cukibpdmyk57y"
+
+[sub_resource type="Gradient" id="Gradient_gwq7n"]
+offsets = PackedFloat32Array(0, 0.9814815)
+colors = PackedColorArray(0.0056468532, 9.024516e-09, 0.13652939, 1, 0, 0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_hq1ik"]
+offsets = PackedFloat32Array(0.30246913, 0.9814815)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="DummyEnemy" type="Node2D" unique_id=2007871584 node_paths=PackedStringArray("hitbox_2d", "hurtbox_2d", "animated_sprite_2d", "cpu_particles_2d_2")]
+z_index = -2
+script = ExtResource("1_ss26w")
+hitbox_2d = NodePath("Hitbox2D")
+hurtbox_2d = NodePath("Hurtbox2D")
+animated_sprite_2d = NodePath("AnimatedSprite2D")
+cpu_particles_2d_2 = NodePath("CPUParticles2D2")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1305356091 node_paths=PackedStringArray("entity")]
+script = ExtResource("2_fah2s")
+entity = NodePath("..")
+max_health = 3
+health = 3
+metadata/_custom_type_script = "uid://otux3dmk7114"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1876609458]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_gplcb")
+animation = &"Hit left"
+autoplay = "Idle"
+
+[node name="Hurtbox2D" type="Area2D" parent="." unique_id=1641291966 node_paths=PackedStringArray("health_component", "damage_num_pos", "damage_particles")]
+script = ExtResource("1_thcns")
+shape = SubResource("RectangleShape2D_gplcb")
+health_component = NodePath("../HealthComponent")
+damage_num_pos = NodePath("../Damage NumPos")
+damage_particles = NodePath("../CPUParticles2D")
+metadata/_custom_type_script = "uid://dtgnvolxh2wqi"
+
+[node name="Hitbox2D" type="Area2D" parent="." unique_id=1183557838 node_paths=PackedStringArray("self_hurtbox")]
+script = ExtResource("4_fx3pk")
+shape = SubResource("RectangleShape2D_kos4r")
+damage_values = SubResource("Resource_ss26w")
+self_hurtbox = NodePath("../Hurtbox2D")
+metadata/_custom_type_script = "uid://bgllng8rb8y36"
+
+[node name="Damage NumPos" type="Marker2D" parent="." unique_id=1569250795]
+position = Vector2(-24, -27)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1800673575]
+position = Vector2(0, 3)
+emitting = false
+amount = 30
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+spread = 144.8
+initial_velocity_min = 99.01
+initial_velocity_max = 277.23
+scale_amount_min = 0.0
+scale_amount_max = 8.3
+color_ramp = SubResource("Gradient_gwq7n")
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="." unique_id=458603378]
+position = Vector2(0, 3)
+emitting = false
+amount = 100
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+spread = 144.8
+initial_velocity_min = 99.01
+initial_velocity_max = 277.23
+scale_amount_min = 0.0
+scale_amount_max = 8.3
+color_ramp = SubResource("Gradient_hq1ik")

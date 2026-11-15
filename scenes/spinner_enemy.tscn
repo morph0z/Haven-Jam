@@ -1,0 +1,175 @@
+[gd_scene format=3 uid="uid://dx04711ruabq5"]
+
+[ext_resource type="Script" uid="uid://cipttw1dh0ufs" path="res://scripts/dummy_enemy.gd" id="1_s62ur"]
+[ext_resource type="Script" uid="uid://otux3dmk7114" path="res://scripts/health_component.gd" id="2_ciwgb"]
+[ext_resource type="Texture2D" uid="uid://bcv3q3tjqwx0c" path="res://assets/sprites/spinner.png" id="3_dohvk"]
+[ext_resource type="Script" uid="uid://dtgnvolxh2wqi" path="res://scripts/hurtbox.gd" id="5_xtph8"]
+[ext_resource type="Script" uid="uid://bgllng8rb8y36" path="res://scripts/hitbox.gd" id="6_bg4ax"]
+[ext_resource type="Script" uid="uid://cukibpdmyk57y" path="res://scripts/damage_values.gd" id="7_avgvw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ciwgb"]
+atlas = ExtResource("3_dohvk")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nidff"]
+atlas = ExtResource("3_dohvk")
+region = Rect2(80, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjyi7"]
+atlas = ExtResource("3_dohvk")
+region = Rect2(160, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtph8"]
+atlas = ExtResource("3_dohvk")
+region = Rect2(240, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bg4ax"]
+atlas = ExtResource("3_dohvk")
+region = Rect2(320, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_avgvw"]
+atlas = ExtResource("3_dohvk")
+region = Rect2(400, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vykrj"]
+atlas = ExtResource("3_dohvk")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s62ur"]
+atlas = ExtResource("3_dohvk")
+region = Rect2(480, 0, 80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vykrj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ciwgb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nidff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjyi7")
+}],
+"loop": 0,
+"name": &"Hit left",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtph8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bg4ax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_avgvw")
+}],
+"loop": 0,
+"name": &"Hit right",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vykrj")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s62ur")
+}],
+"loop": 1,
+"name": &"flash",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gplcb"]
+size = Vector2(40, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kos4r"]
+size = Vector2(40, 80)
+
+[sub_resource type="Resource" id="Resource_ss26w"]
+script = ExtResource("7_avgvw")
+attack_damage = 1
+metadata/_custom_type_script = "uid://cukibpdmyk57y"
+
+[sub_resource type="Gradient" id="Gradient_gwq7n"]
+offsets = PackedFloat32Array(0, 0.9814815)
+colors = PackedColorArray(0.0056468532, 9.024516e-09, 0.13652939, 1, 0, 0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_hq1ik"]
+offsets = PackedFloat32Array(0.30246913, 0.9814815)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="SpinnerEnemy" type="Node2D" unique_id=2007871584 node_paths=PackedStringArray("hitbox_2d", "hurtbox_2d", "animated_sprite_2d", "cpu_particles_2d_2")]
+z_index = -2
+script = ExtResource("1_s62ur")
+hitbox_2d = NodePath("Hitbox2D")
+hurtbox_2d = NodePath("Hurtbox2D")
+animated_sprite_2d = NodePath("AnimatedSprite2D")
+cpu_particles_2d_2 = NodePath("CPUParticles2D2")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1305356091 node_paths=PackedStringArray("entity")]
+script = ExtResource("2_ciwgb")
+entity = NodePath("..")
+max_health = 9
+health = 9
+metadata/_custom_type_script = "uid://otux3dmk7114"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1876609458]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_vykrj")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="Hurtbox2D" type="Area2D" parent="." unique_id=1641291966 node_paths=PackedStringArray("health_component", "damage_num_pos", "damage_particles")]
+script = ExtResource("5_xtph8")
+shape = SubResource("RectangleShape2D_gplcb")
+health_component = NodePath("../HealthComponent")
+damage_num_pos = NodePath("../Damage NumPos")
+damage_particles = NodePath("../CPUParticles2D")
+metadata/_custom_type_script = "uid://dtgnvolxh2wqi"
+
+[node name="Hitbox2D" type="Area2D" parent="." unique_id=1183557838 node_paths=PackedStringArray("self_hurtbox")]
+script = ExtResource("6_bg4ax")
+shape = SubResource("RectangleShape2D_kos4r")
+damage_values = SubResource("Resource_ss26w")
+self_hurtbox = NodePath("../Hurtbox2D")
+metadata/_custom_type_script = "uid://bgllng8rb8y36"
+
+[node name="Damage NumPos" type="Marker2D" parent="." unique_id=1569250795]
+position = Vector2(-24, -27)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1800673575]
+position = Vector2(0, 3)
+emitting = false
+amount = 30
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+spread = 144.8
+initial_velocity_min = 99.01
+initial_velocity_max = 277.23
+scale_amount_min = 0.0
+scale_amount_max = 8.3
+color_ramp = SubResource("Gradient_gwq7n")
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="." unique_id=458603378]
+position = Vector2(0, 3)
+emitting = false
+amount = 100
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+spread = 144.8
+initial_velocity_min = 99.01
+initial_velocity_max = 277.23
+scale_amount_min = 0.0
+scale_amount_max = 8.3
+color_ramp = SubResource("Gradient_hq1ik")
