@@ -141,8 +141,6 @@ cpu_particles_2d_2 = NodePath("CPUParticles2D2")
 [node name="HealthComponent" type="Node" parent="." unique_id=1305356091 node_paths=PackedStringArray("entity")]
 script = ExtResource("2_fah2s")
 entity = NodePath("..")
-max_health = 3
-health = 3
 metadata/_custom_type_script = "uid://otux3dmk7114"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1876609458]

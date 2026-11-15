@@ -12,7 +12,7 @@ config_version=5
 
 config/name="HavenJam"
 config/tags=PackedStringArray("game_jam", "haven")
-run/main_scene="uid://bule4khbiew2b"
+run/main_scene="uid://cb1soeltjrhy"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
